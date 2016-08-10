@@ -266,6 +266,7 @@ cmake $SRCDIR/$VITA_TOOLCHAIN \
 	-Dzlib_INCLUDE_DIR=$BUILDDIR_NATIVE/vita-toolchain/install/include/ \
 	-Dzlib_LIBRARY=$BUILDDIR_NATIVE/vita-toolchain/install/lib/libz.a \
 	-Dlibzip_INCLUDE_DIR=$BUILDDIR_NATIVE/vita-toolchain/install/include/ \
+	-Dlibzip_CONFIG_INCLUDE_DIR=$BUILDDIR_NATIVE/vita-toolchain/install/lib/libzip/include/ \
 	-Dlibzip_LIBRARY=$BUILDDIR_NATIVE/vita-toolchain/install/lib/libzip.a \
 	-DUSE_BUNDLED_ENDIAN_H=ON \
 	-DCMAKE_INSTALL_PREFIX=$INSTALLDIR_NATIVE \
@@ -358,7 +359,7 @@ popd
 pushd $INSTALLDIR_NATIVE
 rm -rf bin/$TARGET-gccbug
 rm -rf ./lib/libiberty.a
-rmdir include
+rm -rf include
 popd
 
 echo Task [III-2] /$HOST_NATIVE/newlib/
@@ -465,7 +466,7 @@ for libiberty_lib in $LIBIBERTY_LIBRARIES ; do
     rm -rf $libiberty_lib
 done
 rm -rf ./lib/libiberty.a
-rmdir include
+rm -rf include
 popd
 
 rm -f $INSTALLDIR_NATIVE/$TARGET/usr
@@ -755,7 +756,7 @@ popd
 
 pushd $INSTALLDIR_MINGW
 rm -rf bin/$TARGET-gccbug
-rmdir include
+rm -rf include
 popd
 
 copy_dir $BUILDDIR_MINGW/tools-$OBJ_SUFFIX_NATIVE/lib/gcc/$TARGET $INSTALLDIR_MINGW/lib/gcc/$TARGET
